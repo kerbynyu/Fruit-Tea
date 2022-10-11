@@ -82,14 +82,14 @@ public class ThirdPersonMovement : MonoBehaviour
                 _playerVelocity.y += Mathf.Sqrt(_jumpForceBase * -_jumpForceBase * _gravityValue);
             }
         }
-        if (Input.GetButton("Jump"))
-        {
-            if (!_isGrounded)
-            {
-                Debug.Log("jumpControl!"+(_jumpForceAdd * -_jumpForceAdd * _gravityValue));
-                _playerVelocity.y += Mathf.Sqrt(_jumpForceAdd * -_jumpForceAdd * _gravityValue) * Time.deltaTime;
-            }
-        }
+        // if (Input.GetButton("Jump"))
+        // {
+        //     if (!_isGrounded)
+        //     {
+        //         Debug.Log("jumpControl!"+(_jumpForceAdd * -_jumpForceAdd * _gravityValue));
+        //         _playerVelocity.y += Mathf.Sqrt(_jumpForceAdd * -_jumpForceAdd * _gravityValue) * Time.deltaTime;
+        //     }
+        //}
 
         _playerVelocity.y += _gravityValue * Time.deltaTime;
         controller.Move(_playerVelocity * Time.deltaTime);
