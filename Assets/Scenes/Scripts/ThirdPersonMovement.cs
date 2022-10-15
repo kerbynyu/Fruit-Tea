@@ -18,11 +18,11 @@ public class ThirdPersonMovement : MonoBehaviour
     public float turnSmooth = 0.1f;
     private float _turnSmoothVelocity;
 
-    private bool _isGrounded;
-    private float _jumpForceBase = 2.2f;
-    private float _jumpForceAdd = 2.8f;
+    public bool _isGrounded;
+    public float _jumpForceBase = 1.7f;
+    public float _jumpForceAdd = 3.2f;
     //private float _jumpHeight = 3.0f;
-    private float _gravityValue = -50f;
+    public float _gravityValue = -50f;
 
     Vector3 moveDire;
 
@@ -82,14 +82,14 @@ public class ThirdPersonMovement : MonoBehaviour
                 _playerVelocity.y += Mathf.Sqrt(_jumpForceBase * -_jumpForceBase * _gravityValue);
             }
         }
-        // if (Input.GetButton("Jump"))
-        // {
-        //     if (!_isGrounded)
-        //     {
-        //         Debug.Log("jumpControl!"+(_jumpForceAdd * -_jumpForceAdd * _gravityValue));
-        //         _playerVelocity.y += Mathf.Sqrt(_jumpForceAdd * -_jumpForceAdd * _gravityValue) * Time.deltaTime;
-        //     }
-        //}
+         if (Input.GetButton("Jump"))
+         {
+             if (!_isGrounded)
+             {
+                 Debug.Log("jumpControl!"+(_jumpForceAdd * -_jumpForceAdd * _gravityValue));
+                 _playerVelocity.y += Mathf.Sqrt(_jumpForceAdd * -_jumpForceAdd * _gravityValue) * Time.deltaTime;
+             }
+        }
 
         _playerVelocity.y += _gravityValue * Time.deltaTime;
         controller.Move(_playerVelocity * Time.deltaTime);
