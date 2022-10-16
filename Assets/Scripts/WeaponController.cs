@@ -28,10 +28,9 @@ public class WeaponController : MonoBehaviour
         IsAttacking = true;
         _canAttack = false;
         Animator anim = Sword.GetComponent<Animator>();
-        anim.SetTrigger("attack");
+        anim.SetBool("attacking",true);
         StartCoroutine(ResetAttackCooldown());
         
-
     }
 
     IEnumerator ResetAttackCooldown()
@@ -46,5 +45,7 @@ public class WeaponController : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         IsAttacking = false;
+        Animator anim = Sword.GetComponent<Animator>();
+        anim.SetBool("attacking",false);
     }
 }
