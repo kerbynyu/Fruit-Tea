@@ -6,13 +6,14 @@ using UnityEngine;
 public class CollisionDetector : MonoBehaviour
 {
     public WeaponController wc;
+    public PlayerManager pm;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy" && wc.IsAttacking)
+        if (other.CompareTag("Enemy") && wc.IsAttacking)
         {
             Debug.Log("hit");
-            other.GetComponent<Animator>().SetTrigger("Hit");
+            //other.GetComponent<Animator>().SetTrigger("Hit");
         }
     }
 }
