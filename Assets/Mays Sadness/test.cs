@@ -29,6 +29,18 @@ public class test : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.A))
         {
             CalculateAngle();
+            if (angle < 330.0 && angle >= 210.0)
+            {
+                Debug.Log("Tea!");
+            }
+            else if (angle < 210.0 && angle >= 90)
+            {
+                Debug.Log("Pom!");
+            }
+            else if (angle < 90 && angle >= 0 || angle >= 330 && angle < 360.0)
+            {
+                Debug.Log("Melon!");
+            }
         }
     }
 
@@ -43,7 +55,7 @@ public class test : MonoBehaviour
         
         //Debug angle
         Debug.DrawLine(worldPos, worldPos + vn, Color.red, 100f);
-        Debug.Log(angle);
+        //Debug.Log(angle);
     }
     
 }
