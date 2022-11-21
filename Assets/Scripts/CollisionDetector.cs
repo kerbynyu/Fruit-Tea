@@ -31,7 +31,8 @@ public class CollisionDetector : MonoBehaviour
         }
     }
     
-    public void colorChange(int form)
+    
+    public void colorChange(int form) //this is a superficial form check
     {
         if (form == 1)
         {

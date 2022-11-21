@@ -27,6 +27,7 @@ public class WeaponController : MonoBehaviour
     {
         IsAttacking = true;
         _canAttack = false;
+        GetComponent<ThirdPersonMovement>().enabled = false;
         Animator anim = Sword.GetComponent<Animator>();
         anim.SetBool("attacking",true);
         StartCoroutine(ResetAttackCooldown());
@@ -37,6 +38,7 @@ public class WeaponController : MonoBehaviour
     {
         StartCoroutine(ResetAttackBool());
         yield return new WaitForSeconds(attackCooldown);
+        GetComponent<ThirdPersonMovement>().enabled = true;
         _canAttack = true;
         //Debug.Log("swing");
     }
