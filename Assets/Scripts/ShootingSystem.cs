@@ -15,33 +15,44 @@ public class ShootingSystem : MonoBehaviour
     [SerializeField] CinemachineFreeLook freeLookCamera;
     CinemachineImpulseSource impulseSource;
 
+    public GameObject player;
+    bool watermelonInfusion = false; 
+
     void Start()
     {
         //input = GetComponent<MovementInput>();
         impulseSource = freeLookCamera.GetComponent<CinemachineImpulseSource>();
+        watermelonInfusion = player.GetComponent<ThirdPersonMovement>().highJump; 
     }
 
     void Update()
     {
         Vector3 angle = parentController.localEulerAngles;
+        watermelonInfusion = player.GetComponent<ThirdPersonMovement>().highJump;
 
-        if (Input.GetMouseButtonDown(2)){
+        Debug.Log(watermelonInfusion);
+        if (watermelonInfusion == true){
             Debug.Log("Pressed middle click.");
          }
 
 
-        bool pressing = Input.GetMouseButton(2);
+        // bool pressing = Input.GetMouseButton(2);
+        bool pressing = watermelonInfusion;
 
-        if (Input.GetMouseButton(2))
+        /*
+        if (pressing == true)
         {
             VisualPolish();
         }
+        */
 
-        if (Input.GetMouseButtonDown(2))
+        if (pressing == true && (Input.GetKeyDown("space") == true)) {
             inkParticle.Play();
 
-        else if (Input.GetMouseButtonUp(2))
+        } else if (pressing == false) {
             inkParticle.Stop();
+        }
+           
 
         parentController.localEulerAngles
             = new Vector3(Mathf.LerpAngle(parentController.localEulerAngles.x, pressing ? RemapCamera(freeLookCamera.m_YAxis.Value, 0, 1, -25, 25) : 0, .3f), angle.y, angle.z);
