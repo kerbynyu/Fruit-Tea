@@ -5,7 +5,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 using Cinemachine;
 using System;
-using UnityEngine.Rendering.PostProcessing;
+//using UnityEngine.Rendering.PostProcessing;
 
 public class WarpController : MonoBehaviour
 {
@@ -18,8 +18,8 @@ public class WarpController : MonoBehaviour
 
     public CinemachineFreeLook cameraFreeLook;
     private CinemachineImpulseSource impulse;
-    private PostProcessVolume postVolume;
-    private PostProcessProfile postProfile;
+    //private PostProcessVolume postVolume;
+    //private PostProcessProfile postProfile;
 
     [Space]
 
@@ -65,8 +65,8 @@ public class WarpController : MonoBehaviour
         input = GetComponent<MovementInput>();
         anim = GetComponent<Animator>();
         impulse = cameraFreeLook.GetComponent<CinemachineImpulseSource>();
-        postVolume = Camera.main.GetComponent<PostProcessVolume>();
-        postProfile = postVolume.profile;
+        //postVolume = Camera.main.GetComponent<PostProcessVolume>();
+       // postProfile = postVolume.profile;
         swordOrigRot = sword.localEulerAngles;
         swordOrigPos = sword.localPosition;
         swordMesh = sword.GetComponentInChildren<MeshRenderer>();
@@ -322,11 +322,11 @@ public class WarpController : MonoBehaviour
 
     void DistortionAmount(float x)
     {
-        postProfile.GetSetting<LensDistortion>().intensity.value = x;
+        //postProfile.GetSetting<LensDistortion>().intensity.value = x;
     }
     void ScaleAmount(float x)
     {
-        postProfile.GetSetting<LensDistortion>().scale.value = x;
+        //postProfile.GetSetting<LensDistortion>().scale.value = x;
     }
 
     public int targetIndex()
