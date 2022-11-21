@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class test : MonoBehaviour
 {
+    public RectTransform radialMenu;
+    public RectTransform startDebug;
+    public RectTransform endDebug;
+    
     public float angle;
     public Vector3 initalVector;
     
     //for debug
     private Vector3 worldPos;
-    public GameObject o;
+    // public GameObject o;
+    
     
     // Update is called once per frame
     void Update()
@@ -18,29 +23,19 @@ public class test : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             initalVector = Input.mousePosition;
+            //Debug menu
+            radialMenu.position = initalVector;
             
             //Debug it in the scene (not really part of code)
-            Vector3 pos = Camera.main.ScreenToWorldPoint(initalVector);
-            worldPos = new Vector3(pos.x, pos.y, 0);
-            Instantiate(o, worldPos, Quaternion.identity);
-            Debug.DrawLine(worldPos + Vector3.left, worldPos, Color.green, 100f);
+            // Vector3 pos = Camera.main.ScreenToWorldPoint(initalVector);
+            // worldPos = new Vector3(pos.x, pos.y, 0);
+            // Instantiate(o, worldPos, Quaternion.identity);
+            // Debug.DrawLine(worldPos + Vector3.left, worldPos, Color.green, 100f);
         }
         
         if (Input.GetKeyUp(KeyCode.A))
         {
             CalculateAngle();
-            if (angle < 330.0 && angle >= 210.0)
-            {
-                Debug.Log("Tea!");
-            }
-            else if (angle < 210.0 && angle >= 90)
-            {
-                Debug.Log("Pom!");
-            }
-            else if (angle < 90 && angle >= 0 || angle >= 330 && angle < 360.0)
-            {
-                Debug.Log("Melon!");
-            }
         }
     }
 
@@ -52,10 +47,13 @@ public class test : MonoBehaviour
         
         angle = Vector2.SignedAngle(vi, vn); //counter clockwise, negative is up, positive is down
         if (angle < 0) angle += 360;
+        angle = 360 - angle;
         
         //Debug angle
-        Debug.DrawLine(worldPos, worldPos + vn, Color.red, 100f);
-        //Debug.Log(angle);
+        startDebug.position = initalVector + vi*50;
+        endDebug.position = initalVector + vn * 50;
+        Debug.DrawLine(radialMenu.position, endDebug.position, Color.red, 100f);
+        Debug.DrawLine(radialMenu.position, startDebug.position, Color.green, 100f);
     }
     
 }
