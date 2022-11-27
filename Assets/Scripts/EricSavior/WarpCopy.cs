@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -7,13 +7,13 @@ using Cinemachine;
 using System;
 //using UnityEngine.Rendering.PostProcessing;
 
-public class WarpController : MonoBehaviour
+public class WarpCopy : MonoBehaviour
 {
     private MovementInput input;
     private Animator anim;
     float timer = 0;
     [SerializeField] float timerSet;
-    public int comboHits;
+    int comboHits;
     public bool isLocked;
 
     public CinemachineFreeLook cameraFreeLook;
@@ -66,7 +66,7 @@ public class WarpController : MonoBehaviour
         anim = GetComponent<Animator>();
         impulse = cameraFreeLook.GetComponent<CinemachineImpulseSource>();
         //postVolume = Camera.main.GetComponent<PostProcessVolume>();
-       // postProfile = postVolume.profile;
+        // postProfile = postVolume.profile;
         swordOrigRot = sword.localEulerAngles;
         swordOrigPos = sword.localPosition;
         swordMesh = sword.GetComponentInChildren<MeshRenderer>();
@@ -76,7 +76,7 @@ public class WarpController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         anim.SetFloat("Blend", input.Speed);
         UserInterface();
 
@@ -91,7 +91,8 @@ public class WarpController : MonoBehaviour
             target = screenTargets[targetIndex()];
         }
 
-        if (Input.GetMouseButtonDown(1)) {
+        if (Input.GetMouseButtonDown(1))
+        {
             LockInterface(true);
             isLocked = true;
         }
@@ -105,40 +106,19 @@ public class WarpController : MonoBehaviour
         if (!isLocked)
             return;
 
-
-        
-
-        if (Input.GetMouseButtonUp(0)) 
+        if (Input.GetMouseButtonDown(0) && isLocked == true)
         {
-            switch (comboHits)
-            {
-                case 0:
-                    FirstHit();
-                    break;
-                case 1:
-                    SecondHit();
-                    break;
-                case 2:
-                    FinalHit();
-                    break;
-                default:
-                    break;
-            }
-
-            if (isLocked == true)
-            {
-                input.RotateTowards(target);
-                input.canMove = false;
-                swordParticle.Play();
-                swordMesh.enabled = true;
-                anim.SetTrigger("slash");
-            }
+            input.RotateTowards(target);
+            input.canMove = false;
+            swordParticle.Play();
+            swordMesh.enabled = true;
+            anim.SetTrigger("slash");
         }
 
-        /*
         if (Input.GetMouseButtonDown(0))
         {
-            comboHits++;
+            anim.Play("FirstAttack");
+            Debug.Log("ERICCCC");
             switch (comboHits)
             {
                 case 0:
@@ -150,27 +130,23 @@ public class WarpController : MonoBehaviour
                 case 2:
                     FinalHit();
                     break;
-                default:
-                    break;
             }
-         
- 
-        }*/
 
 
-        if(timer> 0)
-            {
-                timer -= Time.deltaTime;
-            }
+        }
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
         else
         {
             comboHits = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Cursor.visible = false;
-            }
+        {
+            Cursor.visible = false;
+        }
     }
 
     void FirstHit()
@@ -230,16 +206,16 @@ public class WarpController : MonoBehaviour
         foreach (SkinnedMeshRenderer smr in skinMeshList)
         {
             smr.material = glowMaterial;
-            smr.material.DOFloat(2, "_AlphaThreshold", 5f).OnComplete(()=>Destroy(clone));
+            smr.material.DOFloat(2, "_AlphaThreshold", 5f).OnComplete(() => Destroy(clone));
         }
 
         ShowBody(false);
         anim.speed = 0;
 
-        transform.DOMove(target.position, warpDuration).SetEase(Ease.InExpo).OnComplete(()=>FinishWarp());
+        transform.DOMove(target.position, warpDuration).SetEase(Ease.InExpo).OnComplete(() => FinishWarp());
 
         sword.parent = null;
-        sword.DOMove(target.position, warpDuration/1.2f);
+        sword.DOMove(target.position, warpDuration / 1.2f);
         sword.DOLookAt(target.position, .2f, AxisConstraint.None);
 
         //Particles
