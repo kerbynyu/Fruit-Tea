@@ -39,15 +39,6 @@ public class MovementInput : MonoBehaviour {
     public bool canMove;
 
 
-	float timer = 0;
-	[SerializeField] float timerSet;
-	public int comboHits;
-
-	[SerializeField] float coolDown = 2f;
-	private float nextFireTime = 0f;
-	float lastClickedTime = 0;
-	float maxComboDelay = 1f;
-	float animTime = 0.7f;
 
 	// Use this for initialization
 	void Start () {
@@ -76,101 +67,10 @@ public class MovementInput : MonoBehaviour {
 		//Updater
 
 
-		if (Input.GetMouseButtonUp(0))
-		{
-			/*
-			switch (comboHits)
-			{
-				case 0:
-					FirstHit();
-					break;
-				case 1:
-					SecondHit();
-					break;
-				case 2:
-					FinalHit();
-					break;
-				default:
-					break;
-			}*/
-
-			OnClick();
-		}
-
-
-
-		if (Time.time - lastClickedTime > maxComboDelay)
-		{
-			comboHits = 0;
-		}
-
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			Cursor.visible = false;
-		}
-
-		if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > animTime && anim.GetCurrentAnimatorStateInfo(0).IsName("FirstAttack"))
-		{
-			anim.SetBool("firstHit", false);
-
-		}
-		if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > animTime && anim.GetCurrentAnimatorStateInfo(0).IsName("SecondAttack"))
-		{
-			anim.SetBool("secondHit", false);
-
-		}
-		if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > animTime && anim.GetCurrentAnimatorStateInfo(0).IsName("FinalAttack"))
-		{
-			anim.SetBool("finalHit", false);
-			comboHits = 0;
-		}
 
 	}
 
-	void FirstHit()
-	{
-		Debug.Log("First Hit");
-		anim.Play("FirstAttack");
-		comboHits++;
-		timer = timerSet;
-	}
-	void SecondHit()
-	{
-		Debug.Log("Second Hit");
-		anim.Play("SecondAttack");
-		comboHits++;
-		timer = timerSet;
-	}
-	void FinalHit()
-	{
-		Debug.Log("Third Hit");
-		anim.Play("FinalAttack");
-		comboHits = 0;
-		timer = 0;
-	}
-
-	void OnClick()
-	{
-		lastClickedTime = Time.time;
-		comboHits++;
-		if (comboHits == 1)
-		{
-			anim.SetBool("firstHit", true);
-		}
-		comboHits = Mathf.Clamp(comboHits, 0, 3);
-
-		if (comboHits >= 2 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > animTime && anim.GetCurrentAnimatorStateInfo(0).IsName("FirstAttack"))
-		{
-			anim.SetBool("firstHit", false);
-			anim.SetBool("secondHit", true);
-		}
-
-		if (comboHits >= 3 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > animTime && anim.GetCurrentAnimatorStateInfo(0).IsName("SecondAttack"))
-		{
-			anim.SetBool("secondHit", false);
-			anim.SetBool("finalHit", true);
-		}
-	}
+	
 
 	void PlayerMoveAndRotation() {
 		InputX = Input.GetAxis ("Horizontal");
