@@ -85,7 +85,7 @@ public class ThirdPersonMovement : MonoBehaviour
             {
                 //Debug.Log("jump!"+ (_jumpForceBase * -_jumpForceBase * _gravityValue));
                 if (highJump)
-                    _playerVelocity.y += 1.5f * Mathf.Sqrt(_jumpForceBase * -_jumpForceBase * _gravityValue);
+                    _playerVelocity.y += 1.8f * Mathf.Sqrt(_jumpForceBase * -_jumpForceBase * _gravityValue);
                 else
                     _playerVelocity.y += Mathf.Sqrt(_jumpForceBase * -_jumpForceBase * _gravityValue);
             }
