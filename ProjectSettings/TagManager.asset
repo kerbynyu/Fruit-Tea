@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Wall
+  - Target
+  - Melon
   layers:
   - Default
   - TransparentFX

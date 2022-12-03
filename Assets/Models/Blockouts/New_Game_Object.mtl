@@ -1,0 +1,5 @@
+newmtl Mat_Palace
+map_Kd Tex_Palace.jpg
+Kd 1 1 1
+d 1
+

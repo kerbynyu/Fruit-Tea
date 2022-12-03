@@ -38,6 +38,8 @@ public class MovementInput : MonoBehaviour {
     private Vector3 moveVector;
     public bool canMove;
 
+
+
 	// Use this for initialization
 	void Start () {
 		anim = this.GetComponent<Animator> ();
@@ -63,12 +65,17 @@ public class MovementInput : MonoBehaviour {
 		//controller.Move (moveVector);
 
 		//Updater
+
+
+
 	}
+
+	
 
 	void PlayerMoveAndRotation() {
 		InputX = Input.GetAxis ("Horizontal");
 		InputZ = Input.GetAxis ("Vertical");
-
+		
 		var camera = Camera.main;
 		var forward = cam.transform.forward;
 		var right = cam.transform.right;

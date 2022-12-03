@@ -30,7 +30,7 @@ public class ShootingSystem : MonoBehaviour
         Vector3 angle = parentController.localEulerAngles;
         watermelonInfusion = player.GetComponent<ThirdPersonMovement>().highJump;
 
-        Debug.Log(watermelonInfusion);
+        //Debug.Log(watermelonInfusion);
         if (watermelonInfusion == true){
             Debug.Log("Pressed middle click.");
          }

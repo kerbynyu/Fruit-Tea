@@ -24,7 +24,9 @@ public class ThirdPersonMovement : MonoBehaviour
     //private float _jumpHeight = 3.0f;
     private float _gravityValue = -50f;
 
+    //blockout level code
     public bool highJump;
+    public bool getMelon;
     public Material matPlayer;
 
     Vector3 moveDire;
@@ -77,44 +79,53 @@ public class ThirdPersonMovement : MonoBehaviour
             controller.Move(moveDire * speed * Time.deltaTime);
         }
 
-        if (Input.GetButtonDown("Jump") )
+        if (Input.GetButtonDown("Jump"))
         {
             if (_isGrounded)
             {
                 //Debug.Log("jump!"+ (_jumpForceBase * -_jumpForceBase * _gravityValue));
-                if(highJump)
-                    _playerVelocity.y += 2*Mathf.Sqrt(_jumpForceBase * -_jumpForceBase * _gravityValue);
+                if (highJump)
+                    _playerVelocity.y += 1.8f * Mathf.Sqrt(_jumpForceBase * -_jumpForceBase * _gravityValue);
                 else
                     _playerVelocity.y += Mathf.Sqrt(_jumpForceBase * -_jumpForceBase * _gravityValue);
             }
         }
-         if (Input.GetButton("Jump"))
-         {
-             if (!_isGrounded)
-             {
-                 Debug.Log("jumpControl!"+(_jumpForceAdd * -_jumpForceAdd * _gravityValue));
-                 _playerVelocity.y += Mathf.Sqrt(_jumpForceAdd * -_jumpForceAdd * _gravityValue) * Time.deltaTime;
-             }
+        if (Input.GetButton("Jump"))
+        {
+            if (!_isGrounded)
+            {
+                Debug.Log("jumpControl!" + (_jumpForceAdd * -_jumpForceAdd * _gravityValue));
+                _playerVelocity.y += Mathf.Sqrt(_jumpForceAdd * -_jumpForceAdd * _gravityValue) * Time.deltaTime;
+            }
         }
 
         _playerVelocity.y += _gravityValue * Time.deltaTime;
         controller.Move(_playerVelocity * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.E))
+        //High jump test code for blockout level
+        if (getMelon)
         {
-            if (highJump)
-                highJump = false;
-            else
-                highJump = true;
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (highJump)
+                    highJump = false;
+                else
+                    highJump = true;
+            }
         }
 
         if (highJump)
-        {
-            matPlayer.SetColor("_BaseColor",Color.red);
-        }
+            matPlayer.SetColor("_BaseColor", Color.red);
         else
-        {
             matPlayer.SetColor("_BaseColor", Color.white);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Melon" & !highJump)
+        {
+            getMelon = true;
+            highJump = true;
+            other.gameObject.SetActive(false);
         }
     }
 }
