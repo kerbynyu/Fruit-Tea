@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class CoffeeSelect : MonoBehaviour
@@ -29,6 +30,14 @@ public class CoffeeSelect : MonoBehaviour
             anim.SetBool("Right", true);
             anim.SetBool("Left", false);
             print("right arrow key is held down");
+        }
+
+        if((anim.GetBool("Right")== true)){
+            if((Input.GetKey(KeyCode.Return) == true)) {
+                Debug.Log("load scene watermelon");
+                SceneManager.LoadScene("TheLevel2");
+            }
+          
         }
     }
 }
