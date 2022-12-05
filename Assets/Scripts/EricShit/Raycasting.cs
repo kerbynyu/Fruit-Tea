@@ -30,7 +30,7 @@ public class Raycasting : MonoBehaviour
         if (Physics.Raycast(ray, out hitData, distanceToCheck))
         {
             // The Ray hit something!
-            if (hitData.transform.gameObject.tag == "Target") //if we hit da enemy
+            if (hitData.transform.gameObject.tag == "Enemy") //if we hit da enemy
             {  //This is the tag for all enemies ("Target")
 
                 Debug.Log(hitData.transform.position); //position of whatever we hit
