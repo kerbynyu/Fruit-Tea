@@ -13,7 +13,7 @@ public class WarpController : MonoBehaviour
     private Animator anim;
     float timer = 0;
     [SerializeField] float timerSet;
-    public int comboHits;
+    int comboHits;
     public bool isLocked;
 
     public CinemachineFreeLook cameraFreeLook;
@@ -57,8 +57,6 @@ public class WarpController : MonoBehaviour
     public Image lockAim;
     public Vector2 uiOffset;
 
-    public float animTime = 0.7f; //time of animations
-
     // Start is called before the first frame update
     void Start()
     {
@@ -82,13 +80,12 @@ public class WarpController : MonoBehaviour
         anim.SetFloat("Blend", input.Speed);
         UserInterface();
 
-       // if (!input.canMove)
-            //return;
+        if (!input.canMove)
+            return;
 
-        //if (screenTargets.Count < 1)
-            //return;
+        if (screenTargets.Count < 1)
+            return;
 
-        /*
         if (!isLocked)
         {
             target = screenTargets[targetIndex()];
@@ -104,75 +101,21 @@ public class WarpController : MonoBehaviour
             LockInterface(false);
             isLocked = false;
         }
-        */ //currently this scripts inhibit the player because there are no proper enemies in scene
 
-        /*
         if (!isLocked)
-        {
             return;
-        }
 
-        */ //this fucks up the ability to use the mouse button for both locking on and attacking
-
-
-        if (Input.GetMouseButtonUp(0) && timer <= 0.3f) 
-        {
-            switch (comboHits)
-            {
-                case 0:
-                    //anim.SetBool("finalHit", false);
-                    FirstHit();
-                    break;
-                case 1:
-                    //anim.SetBool("firstHit", false);
-                    SecondHit();
-                    break;
-                case 2:
-                    //anim.SetBool("secondHit", false);
-                    FinalHit();
-                    break;
-                default:
-                    comboHits = 0;
-                    timer = 0;
-                    break;
-            }
-
-            if (isLocked == true)
-            {
-                input.RotateTowards(target);
-                input.canMove = false;
-                swordParticle.Play();
-                swordMesh.enabled = true;
-                anim.SetTrigger("slash");
-            }
-
-
-
-
-        }
-
-        ///*
-        if ((anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= animTime && anim.GetCurrentAnimatorStateInfo(0).IsName("FirstAttack")) || timer <= 0)
-        {
-            anim.SetBool("firstHit", false);
-
-        }
-        if ((anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= animTime && anim.GetCurrentAnimatorStateInfo(0).IsName("SecondAttack")) || timer <= 0)
-        {
-            anim.SetBool("secondHit", false);
-
-        }
-        if ((anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= animTime && anim.GetCurrentAnimatorStateInfo(0).IsName("FinalAttack")) || timer <= 0)
-        {
-            anim.SetBool("finalHit", false);
-            comboHits = 0;
-        }
-        //*/
-
-        /*
         if (Input.GetMouseButtonDown(0))
         {
-            comboHits++;
+            input.RotateTowards(target);
+            input.canMove = false;
+            swordParticle.Play();
+            swordMesh.enabled = true;
+            anim.SetTrigger("slash");
+        }
+
+      if (Input.GetKeyDown(KeyCode.Space))
+        {
             switch (comboHits)
             {
                 case 0:
@@ -183,83 +126,46 @@ public class WarpController : MonoBehaviour
                     break;
                 case 2:
                     FinalHit();
-                    break;
-                default:
-                    break;
-            }
-
-
-        anim.Play("FirstAttack");
-            Debug.Log("TRUEEE");
-            switch (comboHits)
-            {
-                case 0:
-                    FirstHit();
-                    break;
-                case 1:
-                    SecondHit();
-                    break;
-                case 2:
-                    FinalHit();
-                    break;
-                default:
                     break;
             }
          
  
-        }*/
-
-
-        if (timer> 0)
-            {
-                timer -= Time.deltaTime;
-            }
-        else
-        {
-            comboHits = 0;
-            timer = 0;
-            //anim.SetBool("firstHit", false);
-            //anim.SetBool("secondHit", false);
-            //anim.SetBool("finalHit", false);
-
         }
+    if(timer> 0)
+        {
+            timer -= Time.deltaTime;
+        }
+    else
+    {
+        comboHits = 0;
+    }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Cursor.visible = false;
-            }
+    if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.visible = false;
+        }
     }
 
     void FirstHit()
     {
         Debug.Log("First Hit");
-        anim.SetBool("finalHit", false);
-        anim.SetBool("firstHit", true);
-        
         anim.Play("FirstAttack");
-        timer = timerSet;
         comboHits++;
-
+        timer = timerSet;
     }
     void SecondHit()
     {
         Debug.Log("Second Hit");
-        anim.SetBool("firstHit", false);
-        anim.SetBool("secondHit", true);
-        //anim.Play("SecondAttack");
-        timer = timerSet;
+        anim.Play("SecondAttack");
         comboHits++;
-
+        timer = timerSet;
     }
     void FinalHit()
     {
         Debug.Log("Third Hit");
-        anim.SetBool("secondHit", false);
-        anim.SetBool("finalHit", true);
-        //anim.Play("FinalAttack");
-        //comboHits = 0;
-        timer = timerSet;
-        //timer = 0;   //FInal hit is false instantly!
+        anim.Play("FinalAttack");
+        comboHits = 0;
+        timer = 0;
     }
 
     private void UserInterface()
