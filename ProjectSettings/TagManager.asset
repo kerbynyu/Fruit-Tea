@@ -9,6 +9,8 @@ TagManager:
   - Target
   - Melon
   - Floor
+  - B_Boba
+  - C_Boba
   layers:
   - Default
   - TransparentFX
