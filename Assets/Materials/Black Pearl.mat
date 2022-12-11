@@ -34,8 +34,9 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses:
   - SRPDEFAULTUNLIT
   m_SavedProperties:
@@ -132,12 +133,12 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GradientAngle: 39
-    - _GradientCenterX: 0
+    - _GradientAngle: 139
+    - _GradientCenterX: -2.18
     - _GradientCenterY: 0
     - _GradientEnabled: 1
-    - _GradientSize: 3
-    - _LightContribution: 0
+    - _GradientSize: 1.14
+    - _LightContribution: 0.645
     - _LightFalloffSize: 0
     - _LightmapDirectionPitch: 0
     - _LightmapDirectionYaw: 0
@@ -178,7 +179,7 @@ Material:
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimExtra: {r: 0.3207547, g: 0.19215022, b: 0.19215022, a: 1}
     - _ColorDimSteps: {r: 0.05660379, g: 0, b: 0, a: 1}
-    - _ColorGradient: {r: 1, g: 0.15566039, b: 0.15566039, a: 1}
+    - _ColorGradient: {r: 0.26415092, g: 0.01619794, b: 0.14833878, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlatRimColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlatSpecularColor: {r: 0.3207547, g: 0.19215022, b: 0.19215022, a: 1}
