@@ -24,11 +24,14 @@ public class BobaPickup : MonoBehaviour
         if(collision.gameObject.tag == "B_Boba")//black boba
             {
                 bobaRegular++;
+            Destroy(collision.gameObject);
 
             } else if(collision.gameObject.tag == "C_Boba")
             {
                 bobaRare++;
-            }
-        
+            Destroy(collision.gameObject);
+
+        }
+
     }
 }
