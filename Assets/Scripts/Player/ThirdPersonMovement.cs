@@ -114,10 +114,10 @@ public class ThirdPersonMovement : MonoBehaviour
             }
         }
 
-        if (highJump)
-            matPlayer.SetColor("_BaseColor", Color.red);
-        else
-            matPlayer.SetColor("_BaseColor", Color.white);
+        // if (highJump)
+        //     matPlayer.SetColor("_BaseColor", Color.red);
+        // else
+        //     matPlayer.SetColor("_BaseColor", Color.white);
     }
     private void OnTriggerEnter(Collider other)
     {
