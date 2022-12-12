@@ -12,8 +12,7 @@ public class abilityTest : MonoBehaviour
 
     public float destroyTime = 0.3f;
 
-    private float _timer;
-    private float _holdDur = 0.3f;
+    
     
 
     public GameObject player;

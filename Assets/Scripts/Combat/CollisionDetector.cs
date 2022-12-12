@@ -27,7 +27,7 @@ public class CollisionDetector : MonoBehaviour
         {
             Debug.Log("hit");
             //other.GetComponent<Animator>().SetTrigger("Hit");
-            colorChange(pm.form);
+            colorChange(pm.fruitForm);
         }
     }
     

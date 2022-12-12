@@ -1,0 +1,34 @@
+{
+    "name": "abilityControls",
+    "maps": [
+        {
+            "name": "abilityMap",
+            "id": "72717582-c482-4d12-a977-0fa383df89fe",
+            "actions": [
+                {
+                    "name": "ability",
+                    "type": "Button",
+                    "id": "bae59a22-cb22-419a-a3e7-da591f1242e8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold,Tap",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "819352d6-9267-4c35-acb8-52a677af39dd",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
