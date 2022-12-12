@@ -10,7 +10,7 @@ using System;
 public class WarpController : MonoBehaviour
 {
     private MovementInput input;
-    private Animator anim;
+    public Animator anim;
     float timer = 0;
     [SerializeField] float timerSet;
     public int comboHits;
@@ -115,7 +115,7 @@ public class WarpController : MonoBehaviour
         */ //this fucks up the ability to use the mouse button for both locking on and attacking
 
 
-        if (Input.GetMouseButtonUp(0) && timer <= 0.3f) 
+        if (Input.GetMouseButtonUp(0) && timer <= 0.4f) 
         {
             switch (comboHits)
             {

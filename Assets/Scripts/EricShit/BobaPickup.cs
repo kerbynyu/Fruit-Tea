@@ -28,7 +28,7 @@ public class BobaPickup : MonoBehaviour
         bobaRareUI.text = bobaRare + "" ; 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if(collision.gameObject.tag == "B_Boba")//black boba
             {

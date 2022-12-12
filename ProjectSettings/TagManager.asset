@@ -11,6 +11,8 @@ TagManager:
   - Floor
   - B_Boba
   - C_Boba
+  - Sword
+  - Anims
   layers:
   - Default
   - TransparentFX
