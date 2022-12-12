@@ -8,12 +8,7 @@ public class menuController : MonoBehaviour
 {
     public CinemachineFreeLook cam;
     public PlayerManager pm;
-
-    public Form1 f1;
-
-    public Form2 f2;
-
-    public Form3 f3;
+    
 
     public float angle;
     public Vector3 initalVector;
@@ -55,31 +50,37 @@ public class menuController : MonoBehaviour
             initalVector = Input.mousePosition;
         }
         
-        if (Input.GetKeyUp(KeyCode.Tab))
+        if (Input.GetKey(KeyCode.Tab))
         {
             CalculateAngle();
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            SetSpeed(camSpeed[0], camSpeed[1]);
-            
+
             if (angle < 135.0 && angle >= 45.0)
             {
                 Debug.Log("Tea! " + angle);
-                pm.form = 1;
+                pm.fruitForm = 1;
                 
             }
             else if (angle < 270.0 && angle >= 135)
             {
                 Debug.Log("Pom! " + angle);
-                pm.form = 2;
+                pm.fruitForm = 2;
             }
             else if (angle < 45 && angle >= 0 || angle >= 270 && angle < 360.0)
             {
                 Debug.Log("Melon! " + angle);
-                pm.form = 3;
+                pm.fruitForm = 3;
             }
             
-            currentForm = pm.form;
+            
+        }
+        
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            SetSpeed(camSpeed[0], camSpeed[1]);
+            
+            currentForm = pm.fruitForm;
         }
     }
 

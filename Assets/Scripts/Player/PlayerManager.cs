@@ -5,32 +5,36 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     //public menuController mc;
-    public int maxHP;
+    [SerializeField]
+    
+    public float _melonGaugeCurr, _melonGaugeMax;
+    public float _pomGaugeCurr, _pomGaugeMax;
 
-    public int form;
+    [SerializeField] public bool _canMelon, _canPom;
+    
+    
+    public int fruitForm;
     // Start is called before the first frame update
+    
+    
+    
     void Start()
     {
-        //form = 1;
+        //tea = 1; melon = 2; pom = 3
+        fruitForm = 1;
+        
+        _melonGaugeMax = 85.0f;
+        _pomGaugeMax = 85.0f;
+        
+        
+        _melonGaugeCurr = 85.0f;
+        _pomGaugeCurr = 85.0f;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.Alpha1))
-        // {
-        //     form = 1;
-        //     Debug.Log("1");
-        // }
-        // else if (Input.GetKeyDown(KeyCode.Alpha2))
-        // {
-        //     form = 2;
-        //     Debug.Log("2");
-        // }
-        // else if (Input.GetKeyDown(KeyCode.Alpha3))
-        // {
-        //     form = 3;
-        //     Debug.Log("3");
-        // }
+         
     }
 }
