@@ -5,9 +5,9 @@ using UnityEngine;
 public class fruitGauge : MonoBehaviour
 {
     [Header("General Info")] 
-    public float _fruitGaugeMax;
-
-    public float _fruitGaugeCurr;
+    [SerializeField]
+    float _fruitGaugeMax;
+    float _fruitGaugeCurr;
     
     
     
@@ -27,5 +27,17 @@ public class fruitGauge : MonoBehaviour
         }
         _fruitGaugeCurr = afterCalc;
         return true;
+    }
+
+    
+    //setters for fruit gauge values
+    public void _setMax(float _newMax)
+    {
+        _fruitGaugeMax = _newMax;
+    }
+
+    public void _setCurr(float _newCurr)
+    {
+        _fruitGaugeCurr = _newCurr;
     }
 }
