@@ -5,8 +5,11 @@ using UnityEngine;
 public class teaGauge : MonoBehaviour
 {
     //aka our health bar
-    
-    [Header("Fruit Infusions")]
+
+    [Header("Fruit Infusions")] [SerializeField]
+    private fruitGauge _pomGauge;
+
+    private fruitGauge _melonGauge;
     
     
     
