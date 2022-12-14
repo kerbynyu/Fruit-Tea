@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class fruitGauge : MonoBehaviour
 {
-    [Header("General Info")] 
-    [SerializeField]
-    float _fruitGaugeMax;
-    float _fruitGaugeCurr;
+    [Header("General Info")]
+    public float _fruitGaugeMax;
+    public float _fruitGaugeCurr;
     
     
     
@@ -15,6 +14,8 @@ public class fruitGauge : MonoBehaviour
     {
         
     }
+
+    
 
     public bool _canAbility(float cost)
     {

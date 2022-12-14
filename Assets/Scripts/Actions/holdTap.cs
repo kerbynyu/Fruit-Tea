@@ -9,8 +9,11 @@ public class holdTap : MonoBehaviour
 {
     public AbilityControls _ac;
 
+    
+    
     [SerializeField]
-    private InputActionReference _actionReference;
+    [Header("Actions")]
+    private InputActionReference _abilityReference, _NAReference;
 
     private void Awake()
     {
@@ -20,24 +23,27 @@ public class holdTap : MonoBehaviour
 
     private void OnEnable()
     {
-        _actionReference.action.Enable();
+        _abilityReference.action.Enable();
+        _NAReference.action.Enable();
     }
 
     private void OnDisable()
     {
-        _actionReference.action.Disable();
+        _abilityReference.action.Disable();
+        _NAReference.action.Disable();
     }
 
     private void Start()
     {
         //this first if statement might not be necessary but we'll see
-        if (!(_actionReference.action.interactions.Contains("Hold") &&
-              _actionReference.action.interactions.Contains("Tap")))
+        if (!(_abilityReference.action.interactions.Contains("Hold") &&
+              _abilityReference.action.interactions.Contains("Tap")))
         {
+            
             return;
         }
 
-        _actionReference.action.started += context =>
+        _abilityReference.action.started += context =>
         {
             if (context.interaction is TapInteraction)
             {
@@ -49,7 +55,7 @@ public class holdTap : MonoBehaviour
                 Debug.Log("hold started");
             }
         };
-        _actionReference.action.performed += context =>
+        _abilityReference.action.performed += context =>
         {
             if (context.interaction is TapInteraction)
             {
@@ -62,7 +68,7 @@ public class holdTap : MonoBehaviour
 
         };
 
-        _actionReference.action.canceled += context =>
+        _abilityReference.action.canceled += context =>
         {
             if (context.interaction is TapInteraction)
             {

@@ -6,17 +6,26 @@ using UnityEngine;
 
 public class menuController : MonoBehaviour
 {
-    public CinemachineFreeLook cam;
+    [Header("General Info")]
     public PlayerManager pm;
+    //this is bullshit cus it changes in update
     
-
+    
+    [Header("Angle Calculation")]
+    public CinemachineFreeLook cam;
     public float angle;
-    public Vector3 initalVector;
-
-    public int currentForm;
-    
+    public Vector3 initialVector;
     private float[] camSpeed;
     
+    [Header("Infusions")]
+    public infusionAbstract teaInfusion;
+    public infusionAbstract melonInfusion;
+    public infusionAbstract pomInfusion;
+    [Space(10)] 
+    [SerializeField] 
+    private int currentForm;
+    public int nextForm; //is taken by pm to see if we can even switch to the desired form
+    private infusionAbstract _toSet; //will be inserted to pm if the above check passes
     
     //for debug
     private Vector3 worldPos;
@@ -47,7 +56,7 @@ public class menuController : MonoBehaviour
             Cursor.visible = true;
             SetSpeed(0, 0);
                 
-            initalVector = Input.mousePosition;
+            initialVector = Input.mousePosition;
         }
         
         if (Input.GetKey(KeyCode.Tab))
@@ -56,21 +65,23 @@ public class menuController : MonoBehaviour
 
             if (angle < 135.0 && angle >= 45.0)
             {
-                Debug.Log("Tea! " + angle);
-                pm.fruitForm = 1;
-                
+                //Debug.Log("Tea! " + angle);
+                nextForm = 1;
+                _toSet = teaInfusion;
+
             }
             else if (angle < 270.0 && angle >= 135)
             {
-                Debug.Log("Pom! " + angle);
-                pm.fruitForm = 2;
+                //Debug.Log("Pom! " + angle);
+                nextForm = 2;
+                _toSet = pomInfusion;
             }
             else if (angle < 45 && angle >= 0 || angle >= 270 && angle < 360.0)
             {
                 Debug.Log("Melon! " + angle);
-                pm.fruitForm = 3;
+                nextForm = 3;
+                _toSet = melonInfusion;
             }
-            
             
         }
         
@@ -79,7 +90,11 @@ public class menuController : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             SetSpeed(camSpeed[0], camSpeed[1]);
+
+            //set the player infusion to whatever we hovered over
             
+            
+            pm.infusionCurr = _toSet;
             currentForm = pm.fruitForm;
         }
     }
@@ -88,16 +103,13 @@ public class menuController : MonoBehaviour
     {
         Vector2 vi = Vector2.left;
         //normalize to get a directional vector, like Vector3.left
-        Vector2 vn = ((Vector2)(Input.mousePosition - initalVector)).normalized;
+        Vector2 vn = ((Vector2)(Input.mousePosition - initialVector)).normalized;
         
         angle = Vector2.SignedAngle(vi, vn); //counter clockwise, negative is up, positive is down
         if (angle < 0) angle += 360;
         angle = 360 - angle; //90 is vertical
 
-        Debug.Log($"angleVector: {vn}, angle: {angle}");
+        //Debug.Log($"angleVector: {vn}, angle: {angle}");
     }
-    
-    
-    
     
 }
