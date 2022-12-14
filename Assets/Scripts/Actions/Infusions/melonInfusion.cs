@@ -30,20 +30,19 @@ public class melonInfusion : infusionAbstract
     
     public void Start()
     {
-        
+        _playerPos = _player.transform.position;
         _prevHeight = _player.transform.position;
-
     }
 
     public void Update()
     {
-        //_player.transform.position = _playerPos;
+        _player.transform.position = _playerPos;
     }
 
     public override void _eTap()
     {
         Debug.Log("melon ability tap");
-        _player.transform.localPosition = _tapPos.transform.localPosition;
+        _playerPos = _tapPos.transform.localPosition;
         
     }
 
@@ -51,7 +50,7 @@ public class melonInfusion : infusionAbstract
     {
         Debug.Log("melon ability hold");
         _jumped = true;
-        _playerPos.y = _upPos.transform.position.y;
+        _playerPos.y = Mathf.Lerp(_playerPos.y, _upPos.transform.position.y, 0.5f);
         _player.GetComponent<ThirdPersonMovement>().enabled = false;
         
     }
