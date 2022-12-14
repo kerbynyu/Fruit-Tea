@@ -105,7 +105,7 @@ public class ThirdPersonMovement : MonoBehaviour
         //High jump test code for blockout level
         if (getMelon)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.O))
             {
                 if (highJump)
                     highJump = false;

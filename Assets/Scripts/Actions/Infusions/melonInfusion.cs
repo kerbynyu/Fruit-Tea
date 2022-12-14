@@ -8,7 +8,7 @@ public class melonInfusion : infusionAbstract
 {
     [Header("Player Info")] 
     [SerializeField]
-    private GameObject _player;
+    public GameObject _player;
     private Vector3 _playerPos;
     private Vector3 _prevHeight;
     [Space(10)]
@@ -30,15 +30,21 @@ public class melonInfusion : infusionAbstract
     
     public void Start()
     {
-        //_playerPos = _player.transform.position;
+        
         _prevHeight = _player.transform.position;
 
+    }
+
+    public void Update()
+    {
+        //_player.transform.position = _playerPos;
     }
 
     public override void _eTap()
     {
         Debug.Log("melon ability tap");
-        _player.transform.position = _tapPos.transform.position;
+        _player.transform.localPosition = _tapPos.transform.localPosition;
+        
     }
 
     public override void _eHold()
@@ -48,8 +54,6 @@ public class melonInfusion : infusionAbstract
         _playerPos.y = _upPos.transform.position.y;
         _player.GetComponent<ThirdPersonMovement>().enabled = false;
         
-        
-
     }
     
     public override void _eHoldStop()
