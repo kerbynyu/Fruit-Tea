@@ -15,6 +15,7 @@ public class Raycasting : MonoBehaviour
     private GameObject shot;
     public bool shooting;
     private Vector3 nearestEnemy;
+    public List<Collider> listNear;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +40,7 @@ public class Raycasting : MonoBehaviour
                     
                     RaycastEnemy(100f, transform); //can alter the distance to check. the transform is to help indicate where we draw raycast from
                     shot.GetComponent<PipDestroy>().hold = pipPositions[j]; //set position to hold ats position to the pip location
+                    shooting = false;
 
                 }
             }
@@ -78,11 +80,12 @@ public class Raycasting : MonoBehaviour
 
     }
 
+   
 
     private void OnTriggerStay(Collider other) //now we use big sphere collider to check for nearest enemy instead
     {
-        Collider[] enemiesClose = Physics.OverlapSphere(transform.position + new Vector3(0, 0, 7), 60);
-        List<Collider> listNear = new List<Collider>(enemiesClose); //create constant list of nearby Enemies
+        Collider[] enemiesClose = Physics.OverlapSphere(transform.position + new Vector3(0, 0, 7), 50);
+        listNear = new List<Collider>(enemiesClose); //create constant list of nearby Enemies
 
 
         if (listNear.Contains(other) && other.gameObject.tag == "Enemy") //check if we have any enemies in our close circle
@@ -91,14 +94,12 @@ public class Raycasting : MonoBehaviour
             shooting = true;
             nearestEnemy = other.gameObject.transform.position;
 
-        } else
-        {
-            nearestEnemy = Vector3.zero;
-            shooting = false;
-        }
+        } 
 
         
     }
+
+   
 
 
 
