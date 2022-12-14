@@ -6,6 +6,6 @@ public class teaInfusion : infusionAbstract
 {
     public override void _eTap()
     {
-        
+        Debug.Log("tea ability tap");
     }
 }

@@ -35,4 +35,14 @@ public class teaGauge : MonoBehaviour
 
         return true;
     }
+
+    public void doubleSteep()
+    {
+        _teaGaugeCurr -= 25.0f;
+        _melonGauge._fruitGaugeCurr += 35.0f;
+        _pomGauge._fruitGaugeCurr += 35.0f;
+        
+
+
+    }
 }

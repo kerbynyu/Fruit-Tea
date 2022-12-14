@@ -35,6 +35,15 @@ public partial class @AbilityControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Hold,Tap"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""normal attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""959a0a25-1512-4f2c-9f12-4a5658cf6585"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold,Tap"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -48,6 +57,17 @@ public partial class @AbilityControls : IInputActionCollection2, IDisposable
                     ""action"": ""ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b87f6e8a-b040-4fb8-ad4c-9499ba1c09eb"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""normal attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -57,6 +77,7 @@ public partial class @AbilityControls : IInputActionCollection2, IDisposable
         // abilityMap
         m_abilityMap = asset.FindActionMap("abilityMap", throwIfNotFound: true);
         m_abilityMap_ability = m_abilityMap.FindAction("ability", throwIfNotFound: true);
+        m_abilityMap_normalattack = m_abilityMap.FindAction("normal attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -117,11 +138,13 @@ public partial class @AbilityControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_abilityMap;
     private IAbilityMapActions m_AbilityMapActionsCallbackInterface;
     private readonly InputAction m_abilityMap_ability;
+    private readonly InputAction m_abilityMap_normalattack;
     public struct AbilityMapActions
     {
         private @AbilityControls m_Wrapper;
         public AbilityMapActions(@AbilityControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @ability => m_Wrapper.m_abilityMap_ability;
+        public InputAction @normalattack => m_Wrapper.m_abilityMap_normalattack;
         public InputActionMap Get() { return m_Wrapper.m_abilityMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -134,6 +157,9 @@ public partial class @AbilityControls : IInputActionCollection2, IDisposable
                 @ability.started -= m_Wrapper.m_AbilityMapActionsCallbackInterface.OnAbility;
                 @ability.performed -= m_Wrapper.m_AbilityMapActionsCallbackInterface.OnAbility;
                 @ability.canceled -= m_Wrapper.m_AbilityMapActionsCallbackInterface.OnAbility;
+                @normalattack.started -= m_Wrapper.m_AbilityMapActionsCallbackInterface.OnNormalattack;
+                @normalattack.performed -= m_Wrapper.m_AbilityMapActionsCallbackInterface.OnNormalattack;
+                @normalattack.canceled -= m_Wrapper.m_AbilityMapActionsCallbackInterface.OnNormalattack;
             }
             m_Wrapper.m_AbilityMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -141,6 +167,9 @@ public partial class @AbilityControls : IInputActionCollection2, IDisposable
                 @ability.started += instance.OnAbility;
                 @ability.performed += instance.OnAbility;
                 @ability.canceled += instance.OnAbility;
+                @normalattack.started += instance.OnNormalattack;
+                @normalattack.performed += instance.OnNormalattack;
+                @normalattack.canceled += instance.OnNormalattack;
             }
         }
     }
@@ -148,5 +177,6 @@ public partial class @AbilityControls : IInputActionCollection2, IDisposable
     public interface IAbilityMapActions
     {
         void OnAbility(InputAction.CallbackContext context);
+        void OnNormalattack(InputAction.CallbackContext context);
     }
 }

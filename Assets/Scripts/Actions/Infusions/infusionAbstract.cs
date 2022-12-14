@@ -15,12 +15,22 @@ public abstract class infusionAbstract : MonoBehaviour
         
     }
     
+    public virtual void _nAttackHoldStop()
+    {
+        
+    }
+    
     public virtual void _eTap()
     {
         
     }
 
     public virtual void _eHold()
+    {
+        
+    }
+    
+    public virtual void _eHoldStop()
     {
         
     }
