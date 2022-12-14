@@ -269,7 +269,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6172919}
-  m_LocalRotation: {x: -0.0050612423, y: 0.99274194, z: -0.11136615, w: -0.04511708}
+  m_LocalRotation: {x: -0.0050612353, y: 0.99274194, z: -0.11136615, w: -0.04511708}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18940,7 +18940,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563041853}
-  m_LocalRotation: {x: -0.0034190333, y: 0.99613214, z: -0.075231336, w: -0.045271154}
+  m_LocalRotation: {x: -0.0034190342, y: 0.99613214, z: -0.07523135, w: -0.045271154}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -26656,7 +26656,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh56372
+  m_Name: pb_Mesh29944
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -51341,7 +51341,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1009166041}
-  m_LocalRotation: {x: -0.004239755, y: 0.99460334, z: -0.09329025, w: -0.045201674}
+  m_LocalRotation: {x: -0.0042397673, y: 0.99460334, z: -0.09329026, w: -0.045201674}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -57091,6 +57091,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222721435}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!198 &1224215156 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6567738190444633490, guid: d23968cad688edb409c58bf395cee79c, type: 3}
+  m_PrefabInstance: {fileID: 1464263362}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1227759046
 GameObject:
   m_ObjectHideFlags: 0
@@ -69362,16 +69367,16 @@ MonoBehaviour:
   timerSet: 0.8
   comboHits: 0
   isLocked: 0
-  cameraFreeLook: {fileID: 0}
+  cameraFreeLook: {fileID: 270821680}
   screenTargets: []
   target: {fileID: 96311751}
   warpDuration: 0.25
   sword: {fileID: 936370714}
   swordHand: {fileID: 1263649488}
-  glowMaterial: {fileID: 2100000, guid: 5657ba7c13269bd40a6d7b7432cd3474, type: 2}
+  glowMaterial: {fileID: 2100000, guid: 296f44fbf99bf4a358d0f718c4db034d, type: 2}
   blueTrail: {fileID: 879134418}
   whiteTrail: {fileID: 1680827594}
-  swordParticle: {fileID: 0}
+  swordParticle: {fileID: 1224215156}
   hitParticle: {fileID: 5183735168474479416, guid: 00e89778035a9b745bd236faac9cdaca, type: 3}
   aim: {fileID: 2579224}
   lockAim: {fileID: 1272940540}

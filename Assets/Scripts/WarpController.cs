@@ -62,7 +62,7 @@ public class WarpController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
+        Cursor.visible = true;
 
         input = GetComponent<MovementInput>();
         anim = GetComponent<Animator>();
@@ -72,7 +72,7 @@ public class WarpController : MonoBehaviour
         swordOrigRot = sword.localEulerAngles;
         swordOrigPos = sword.localPosition;
         swordMesh = sword.GetComponentInChildren<MeshRenderer>();
-        swordMesh.enabled = false;
+        swordMesh.enabled = true;
     }
 
     // Update is called once per frame
@@ -88,7 +88,7 @@ public class WarpController : MonoBehaviour
         //if (screenTargets.Count < 1)
             //return;
 
-        /*
+        
         if (!isLocked)
         {
             target = screenTargets[targetIndex()];
@@ -104,7 +104,7 @@ public class WarpController : MonoBehaviour
             LockInterface(false);
             isLocked = false;
         }
-        */ //currently this scripts inhibit the player because there are no proper enemies in scene
+         //currently this scripts inhibit the player because there are no proper enemies in scene
 
         /*
         if (!isLocked)
@@ -144,6 +144,7 @@ public class WarpController : MonoBehaviour
                 swordParticle.Play();
                 swordMesh.enabled = true;
                 anim.SetTrigger("slash");
+                Warp();
             }
 
 
