@@ -78,7 +78,7 @@ public class menuController : MonoBehaviour
             }
             else if (angle < 45 && angle >= 0 || angle >= 270 && angle < 360.0)
             {
-                Debug.Log("Melon! " + angle);
+                //Debug.Log("Melon! " + angle);
                 nextForm = 3;
                 _toSet = melonInfusion;
             }

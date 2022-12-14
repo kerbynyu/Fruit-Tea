@@ -15,4 +15,12 @@ public class DestroyBelow : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<EnemyHealth>().enemyHealth -= 10;
+        }
+    }
 }

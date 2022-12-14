@@ -59,13 +59,13 @@ public class melonInfusion : infusionAbstract
 
     public override void _eHold()
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
         Debug.Log("melon ability hold");
         _jumped = true;
         normalize = true;
         _playerPos = _player.transform.position;
         //StartCoroutine(LerpUp());
-        _playerPos.y += _upPos.transform.position.y + 20f;
+        _playerPos.y += _upPos.transform.position.y + 10f;
         //_player.GetComponent<ThirdPersonMovement>().enabled = false;
         //StartCoroutine(Timed2());
     }
