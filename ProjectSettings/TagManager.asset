@@ -14,6 +14,7 @@ TagManager:
   - Sword
   - Anims
   - Pip
+  - Tea_Drop
   layers:
   - Default
   - TransparentFX

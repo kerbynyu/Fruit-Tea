@@ -6,11 +6,13 @@ public class EnemyHealth : MonoBehaviour
 {
     public float enemyHealth;
     public WarpController controller;
+    public GameObject teaDrop;
     // Start is called before the first frame update
     void Start()
     {
         enemyHealth = 15f;
         controller = GameObject.FindGameObjectWithTag("Anims").GetComponent<WarpController>();
+        //teaDrop = Resources.Load("Assets/Prefabs/TeaDrop.prefab") as GameObject;
     }
 
     // Update is called once per frame
@@ -18,6 +20,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if(enemyHealth <= 0)
         {
+            GameObject tea = Instantiate(teaDrop, gameObject.transform.position, teaDrop.gameObject.transform.rotation);
             Destroy(gameObject);
         }
     }

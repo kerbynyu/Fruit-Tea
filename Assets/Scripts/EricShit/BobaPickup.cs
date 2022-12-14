@@ -7,6 +7,7 @@ public class BobaPickup : MonoBehaviour
 {
     public float bobaRegular;
     public float bobaRare;
+    public float teaDrop;
 
     public TextMeshProUGUI bobaRegularUI;
     public TextMeshProUGUI bobaRareUI;
@@ -38,6 +39,11 @@ public class BobaPickup : MonoBehaviour
             } else if(collision.gameObject.tag == "C_Boba")
             {
                 bobaRare++;
+            Destroy(collision.gameObject);
+
+            } else if (collision.gameObject.tag == "Tea_Drop")
+        {       
+            teaDrop++;
             Destroy(collision.gameObject);
 
         }
