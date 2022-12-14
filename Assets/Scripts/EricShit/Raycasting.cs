@@ -127,7 +127,7 @@ public class Raycasting : MonoBehaviour
     public void RaycastFloor(float distanceToCheck, Transform whereFrom)
     {
         //raycasts to floor/downward
-        Ray ray = new Ray(whereFrom.position, -whereFrom.up); //checks negative up for down
+        Ray ray = new Ray(whereFrom.position, -whereFrom.up + whereFrom.forward); //checks negative up for down
         RaycastHit hitData;
         if (Physics.Raycast(ray, out hitData, distanceToCheck))
         {

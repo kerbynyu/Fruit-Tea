@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -317,7 +317,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 320002977}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.62, z: 1.31}
+  m_LocalPosition: {x: 0, y: 8.43, z: 1.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 502431551}
   m_Layer: 0
   m_Name: floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -469,7 +469,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548205045}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -46.488728, y: 3.3120022, z: 2.2371793}
+  m_LocalPosition: {x: -46.488728, y: 20.67, z: 2.2371793}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -602,6 +602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 413477390}
+  _playerPos: {x: 0, y: 0, z: 0}
   _tapPos: {fileID: 1522301203}
   _upPos: {fileID: 320002977}
   _jumped: 0
@@ -925,7 +926,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270069202}
-  m_LocalRotation: {x: 0.17227897, y: 7.510492e-15, z: -1.4642845e-15, w: 0.98504823}
+  m_LocalRotation: {x: 0.17227897, y: -7.510492e-15, z: 1.4642845e-15, w: 0.98504823}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2067,6 +2068,10 @@ PrefabInstance:
     - target: {fileID: 2578748025767935716, guid: 1d0983f296bd0a14b81e3c91f82b2737, type: 3}
       propertyPath: m_Name
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578748025767935717, guid: 1d0983f296bd0a14b81e3c91f82b2737, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2578748025767935738, guid: 1d0983f296bd0a14b81e3c91f82b2737, type: 3}
       propertyPath: camera
