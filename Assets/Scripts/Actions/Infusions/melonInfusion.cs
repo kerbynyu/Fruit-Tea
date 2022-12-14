@@ -28,16 +28,17 @@ public class melonInfusion : infusionAbstract
     private GameObject bigSplashHB;
     private GameObject smallSplashHB;
     private Vector3 floorHit;
-    public float timer;
+    public bool normalize;
     public void Start()
     {
         _playerPos = _player.transform.position;
         _prevHeight = _player.transform.position;
+        normalize = true;
     }
 
     public void Update()
     {
-        if (!Input.GetKey(KeyCode.E) && !Input.GetKeyUp(KeyCode.E))
+        if (!Input.GetKey(KeyCode.E) && !Input.GetKeyUp(KeyCode.E) && normalize)
         {
             _playerPos = _player.transform.position;
         }
@@ -46,8 +47,10 @@ public class melonInfusion : infusionAbstract
 
     public override void _eTap()
     {
+        StopAllCoroutines();
         Debug.Log("melon ability tap");
         //_player.GetComponent<ThirdPersonMovement>().enabled = false;
+        normalize = false;
         _playerPos += _player.transform.forward * 10f;
         StartCoroutine(Timed());
 
@@ -56,29 +59,32 @@ public class melonInfusion : infusionAbstract
 
     public override void _eHold()
     {
+        StopAllCoroutines();
         Debug.Log("melon ability hold");
         _jumped = true;
+        normalize = true;
         _playerPos = _player.transform.position;
         //StartCoroutine(LerpUp());
-        _playerPos.y += _upPos.transform.position.y;
-        _player.GetComponent<ThirdPersonMovement>().enabled = false;
-
+        _playerPos.y += _upPos.transform.position.y + 20f;
+        //_player.GetComponent<ThirdPersonMovement>().enabled = false;
+        //StartCoroutine(Timed2());
     }
 
     public override void _eHoldStop()
     {
+        StopAllCoroutines();
         Debug.Log("melon ability hold stop");
         if (!_jumped)
         {
             return;
         }
-        timer = 0;
         //sets the player height back to where you started
-        _playerPos = _player.transform.position;
+        //_playerPos = _player.transform.position;
         //_playerPos.y = _prevHeight.y; //THIS IS TEMPORARY
         _jumped = false;
         //raycast pos stuff
-        RaycastFloor(100f, _player.transform);
+        normalize = false;
+        RaycastFloor(70f, _player.transform);
         _playerPos = floorHit + new Vector3(0, 1, 0);
         StartCoroutine(Timed());
 
@@ -91,7 +97,17 @@ public class melonInfusion : infusionAbstract
 
 
         yield return new WaitForSeconds(0.5f);
+        normalize = true;
         _player.GetComponent<ThirdPersonMovement>().enabled = true;
+
+    }
+
+    IEnumerator Timed2()
+    {
+
+
+        yield return new WaitForSeconds(0.5f);
+        _player.GetComponent<ThirdPersonMovement>().enabled = false;
 
     }
 
@@ -102,7 +118,7 @@ public class melonInfusion : infusionAbstract
         RaycastHit hitData;
         if (Physics.Raycast(ray, out hitData, distanceToCheck))
         {
-            if (hitData.transform.gameObject.tag == "Floor") //does what I hit have a rigidbody?
+            if (hitData.transform.gameObject.tag == "Floor" || hitData.transform.gameObject.tag == "Wall" || distanceToCheck > 0) //does what I hit have a rigidbody?
             {
                 //Debug.Log(hitData.point); //returns exact world position of ray endpoint when we raycast
                 floorHit = hitData.point;
