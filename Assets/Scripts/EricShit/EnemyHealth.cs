@@ -32,6 +32,8 @@ public class EnemyHealth : MonoBehaviour
             enemyHealth -= 5;
         }
 
+        
+
         if(collision.gameObject.name == "body")
         {
             collision.gameObject.GetComponent<EricHealth>().health -= 5;

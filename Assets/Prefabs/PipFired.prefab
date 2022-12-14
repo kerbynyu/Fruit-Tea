@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3773370937231276722}
   m_Layer: 0
   m_Name: PipFired
-  m_TagString: Untagged
+  m_TagString: PomBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,3 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18aca27fbadd5f741bab50fd38a5ba4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hold: {fileID: 0}
+  canShoot: 0
+  whereTo: {x: 0, y: 0, z: 0}
+  speed: 0

@@ -42,6 +42,7 @@ public class PipDestroy : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
+            collision.gameObject.GetComponent<EnemyHealth>().enemyHealth -= 3;
             Destroy(gameObject); //Destroy itself
         }
     }

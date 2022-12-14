@@ -65,13 +65,13 @@ public class Raycasting : MonoBehaviour
             
                 if (enemyHit != Vector3.zero)//We only lerp bullets IF u are raycast from player hits an enemy
                 {
-                    shot.GetComponent<PipDestroy>().whereTo = enemyHit;
+                    shot.GetComponent<PipDestroy>().whereTo = enemyHit + new Vector3(0, 0.5f, 0);
                     shot.GetComponent<PipDestroy>().speed = pipSpeed;
                     shot.GetComponent<PipDestroy>().CanShoot();
                 }
                 else //else we did not have successful hit
                 {
-                shot.GetComponent<PipDestroy>().whereTo = nearestEnemy;
+                shot.GetComponent<PipDestroy>().whereTo = nearestEnemy + new Vector3(0,0.5f,0);
                 shot.GetComponent<PipDestroy>().speed = pipSpeed;
                 shot.GetComponent<PipDestroy>().CanShoot();
 
