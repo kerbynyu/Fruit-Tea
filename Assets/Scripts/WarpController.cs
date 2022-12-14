@@ -58,7 +58,7 @@ public class WarpController : MonoBehaviour
     public Vector2 uiOffset;
 
     public float animTime = 0.7f; //time of animations
-
+    public PlayerManager playerManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -115,7 +115,7 @@ public class WarpController : MonoBehaviour
         */ //this fucks up the ability to use the mouse button for both locking on and attacking
 
 
-        if (Input.GetMouseButtonUp(0) && timer <= 0.4f) 
+        if (Input.GetMouseButtonUp(0) && timer <= 0.4f && playerManager.fruitForm != 2) 
         {
             switch (comboHits)
             {

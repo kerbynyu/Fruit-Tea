@@ -16,6 +16,8 @@ public class Raycasting : MonoBehaviour
     public bool shooting;
     private Vector3 nearestEnemy;
     public List<Collider> listNear;
+    public PlayerManager playerManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,31 +29,34 @@ public class Raycasting : MonoBehaviour
     void Update()
     {
 
-        //Raycast for an enemy
-        if (Input.GetKeyDown(KeyCode.J))
+        if (playerManager.fruitForm == 2)
         {
-            //RaycastFloor(100f);
-            //RaycastRigid(100f);
-            for(int j = 0; j < pipPositions.Length; j++)
+            //Raycast for an enemy
+            if (Input.GetMouseButtonUp(0))
             {
-                if (pipPositions[j].gameObject.name == ("Pip" + i) && shooting)
+                //RaycastFloor(100f);
+                //RaycastRigid(100f);
+                for (int j = 0; j < pipPositions.Length; j++)
                 {
-                    shot = Instantiate(firedPip, pipPositions[j].transform.position, pipPositions[j].transform.rotation);
-                    
-                    RaycastEnemy(100f, transform); //can alter the distance to check. the transform is to help indicate where we draw raycast from
-                    shot.GetComponent<PipDestroy>().hold = pipPositions[j]; //set position to hold ats position to the pip location
-                    shooting = false;
+                    if (pipPositions[j].gameObject.name == ("Pip" + i) && shooting)
+                    {
+                        shot = Instantiate(firedPip, pipPositions[j].transform.position, pipPositions[j].transform.rotation);
 
+                        RaycastEnemy(100f, transform); //can alter the distance to check. the transform is to help indicate where we draw raycast from
+                        shot.GetComponent<PipDestroy>().hold = pipPositions[j]; //set position to hold ats position to the pip location
+                        shooting = false;
+
+                    }
                 }
+
+                i++;
+                if (i > 5) //more than the 5 pip positions, reset to shoot from first
+                {
+                    i = 1;
+                }
+
+
             }
-
-            i++;
-            if(i > 5) //more than the 5 pip positions, reset to shoot from first
-            {
-                i = 1;
-            }
-
-
         }
 
 

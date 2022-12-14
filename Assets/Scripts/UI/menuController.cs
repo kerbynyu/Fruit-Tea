@@ -95,7 +95,8 @@ public class menuController : MonoBehaviour
             
             
             pm.infusionCurr = _toSet;
-            currentForm = pm.fruitForm;
+            pm.fruitForm = nextForm;
+            currentForm = nextForm;
         }
     }
 
