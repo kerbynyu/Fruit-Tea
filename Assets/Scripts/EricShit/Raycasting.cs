@@ -95,7 +95,7 @@ public class Raycasting : MonoBehaviour
 
         if (listNear.Contains(other) && other.gameObject.tag == "Enemy") //check if we have any enemies in our close circle
         {
-            Debug.Log("ENEMI");
+            //Debug.Log("ENEMI");
             shooting = true;
             nearestEnemy = other.gameObject.transform.position;
 

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class melonInfusion : infusionAbstract
 {
-    [Header("Player Info")] 
+    [Header("Player Info")]
     [SerializeField]
     public GameObject _player;
     public Vector3 _playerPos;
@@ -15,19 +15,20 @@ public class melonInfusion : infusionAbstract
     [SerializeField]
     private GameObject _tapPos, _upPos;
     private Vector3 _launchPos; //we get this from the raycast
-    //private float launchHeight;
-    
-    [Space(10)] 
+                                //private float launchHeight;
+
+    [Space(10)]
     [SerializeField]
     private bool _jumped;
-    
+
     [Space(10)]
-    
+
     [Header("Hitboxes")]
     [SerializeField]
     private GameObject bigSplashHB;
     private GameObject smallSplashHB;
     private Vector3 floorHit;
+    public float timer;
     public void Start()
     {
         _playerPos = _player.transform.position;
@@ -36,15 +37,20 @@ public class melonInfusion : infusionAbstract
 
     public void Update()
     {
-        _player.transform.position = Vector3.Lerp(_player.transform.position, _playerPos, 0.15f);
+        if (!Input.GetKey(KeyCode.E) && !Input.GetKeyUp(KeyCode.E))
+        {
+            _playerPos = _player.transform.position;
+        }
+        _player.transform.position = Vector3.Lerp(_player.transform.position, _playerPos, 0.015f);
     }
 
     public override void _eTap()
     {
         Debug.Log("melon ability tap");
-        _playerPos = _player.transform.position;
-        _playerPos += _player.transform.forward * 3f;
-        ;
+        //_player.GetComponent<ThirdPersonMovement>().enabled = false;
+        _playerPos += _player.transform.forward * 10f;
+        StartCoroutine(Timed());
+
 
     }
 
@@ -56,9 +62,9 @@ public class melonInfusion : infusionAbstract
         //StartCoroutine(LerpUp());
         _playerPos.y += _upPos.transform.position.y;
         _player.GetComponent<ThirdPersonMovement>().enabled = false;
-        
+
     }
-    
+
     public override void _eHoldStop()
     {
         Debug.Log("melon ability hold stop");
@@ -66,22 +72,27 @@ public class melonInfusion : infusionAbstract
         {
             return;
         }
+        timer = 0;
         //sets the player height back to where you started
         _playerPos = _player.transform.position;
         //_playerPos.y = _prevHeight.y; //THIS IS TEMPORARY
         _jumped = false;
-        //
         //raycast pos stuff
-        RaycastFloor(50f, _player.transform);
-        _playerPos = floorHit +  new Vector3(0,1,0);
+        RaycastFloor(100f, _player.transform);
+        _playerPos = floorHit + new Vector3(0, 1, 0);
+        StartCoroutine(Timed());
+
         //_player.GetComponent<ThirdPersonMovement>().enabled = true; //FIX PLEASE, NEED TO ADD
 
     }
 
-    IEnumerator LerpUp()
+    IEnumerator Timed()
     {
-        _playerPos.y = Mathf.Lerp(_playerPos.y, _upPos.transform.position.y, 0.1f);
+
+
         yield return new WaitForSeconds(0.5f);
+        _player.GetComponent<ThirdPersonMovement>().enabled = true;
+
     }
 
     public void RaycastFloor(float distanceToCheck, Transform whereFrom)
