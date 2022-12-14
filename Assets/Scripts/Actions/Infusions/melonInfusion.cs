@@ -36,14 +36,14 @@ public class melonInfusion : infusionAbstract
 
     public void Update()
     {
-        _player.transform.position = _playerPos;
+        _player.transform.position = Vector3.Lerp(_player.transform.position, _playerPos, 0.15f);
     }
 
     public override void _eTap()
     {
         Debug.Log("melon ability tap");
         _playerPos = _player.transform.position;
-        _playerPos += _player.transform.forward * 2f;
+        _playerPos += _player.transform.forward * 3f;
         ;
 
     }
@@ -53,6 +53,7 @@ public class melonInfusion : infusionAbstract
         Debug.Log("melon ability hold");
         _jumped = true;
         _playerPos = _player.transform.position;
+        //StartCoroutine(LerpUp());
         _playerPos.y += _upPos.transform.position.y;
         _player.GetComponent<ThirdPersonMovement>().enabled = false;
         
@@ -73,8 +74,14 @@ public class melonInfusion : infusionAbstract
         //raycast pos stuff
         RaycastFloor(50f, _player.transform);
         _playerPos = floorHit +  new Vector3(0,1,0);
-        //_player.GetComponent<ThirdPersonMovement>().enabled = true;
+        //_player.GetComponent<ThirdPersonMovement>().enabled = true; //FIX PLEASE, NEED TO ADD
 
+    }
+
+    IEnumerator LerpUp()
+    {
+        _playerPos.y = Mathf.Lerp(_playerPos.y, _upPos.transform.position.y, 0.1f);
+        yield return new WaitForSeconds(0.5f);
     }
 
     public void RaycastFloor(float distanceToCheck, Transform whereFrom)
