@@ -13,6 +13,7 @@ TagManager:
   - C_Boba
   - Sword
   - Anims
+  - Pip
   layers:
   - Default
   - TransparentFX
