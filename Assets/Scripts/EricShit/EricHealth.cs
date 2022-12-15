@@ -5,6 +5,8 @@ using UnityEngine;
 public class EricHealth : MonoBehaviour
 {
     public float health;
+    public GameObject deathMSG;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,9 @@ public class EricHealth : MonoBehaviour
     {
         if (health <= 0)
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+            //UnityEditor.EditorApplication.isPlaying = false;
+            deathMSG.SetActive(true);
+            player.SetActive(false);
         }
     }
 }
