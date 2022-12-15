@@ -11,7 +11,7 @@ public class WarpController : MonoBehaviour
 {
     private MovementInput input;
     public Animator anim;
-    float timer = 0;
+    public float timer = 0;
     [SerializeField] float timerSet;
     public int comboHits;
     public bool isLocked;
@@ -57,7 +57,7 @@ public class WarpController : MonoBehaviour
     public Image lockAim;
     public Vector2 uiOffset;
 
-    public float animTime = 0.7f; //time of animations
+    public float animTime = 0.6f; //time of animations
     public PlayerManager playerManager;
     // Start is called before the first frame update
     void Start()
@@ -91,7 +91,10 @@ public class WarpController : MonoBehaviour
         
         if (!isLocked)
         {
-            target = screenTargets[targetIndex()];
+            if (screenTargets.Count > 0)
+            {
+                target = screenTargets[targetIndex()];
+            }
         }
 
         if (Input.GetMouseButtonDown(1)) {
@@ -104,6 +107,7 @@ public class WarpController : MonoBehaviour
             LockInterface(false);
             isLocked = false;
         }
+
          //currently this scripts inhibit the player because there are no proper enemies in scene
 
         /*
@@ -139,6 +143,7 @@ public class WarpController : MonoBehaviour
 
             if (isLocked == true)
             {
+                if(target != null) 
                 input.RotateTowards(target);
                 input.canMove = false;
                 swordParticle.Play();
@@ -153,20 +158,29 @@ public class WarpController : MonoBehaviour
         }
 
         ///*
-        if ((anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= animTime && anim.GetCurrentAnimatorStateInfo(0).IsName("FirstAttack")) || timer <= 0)
+        if ((anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= animTime && anim.GetCurrentAnimatorStateInfo(0).IsName("FirstAttack")) || timer <= 0.2f)
         {
             anim.SetBool("firstHit", false);
 
         }
-        if ((anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= animTime && anim.GetCurrentAnimatorStateInfo(0).IsName("SecondAttack")) || timer <= 0)
+        if ((anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= animTime && anim.GetCurrentAnimatorStateInfo(0).IsName("SecondAttack")) || timer <= 0.2f)
         {
             anim.SetBool("secondHit", false);
 
         }
-        if ((anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= animTime && anim.GetCurrentAnimatorStateInfo(0).IsName("FinalAttack")) || timer <= 0)
+        if ((anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= animTime && anim.GetCurrentAnimatorStateInfo(0).IsName("FinalAttack")) || timer <= 0.2f)
         {
             anim.SetBool("finalHit", false);
             comboHits = 0;
+        }
+
+
+        if((anim.GetBool("firstHit") || anim.GetBool("secondHit") || anim.GetBool("finalHit")) && (anim.GetCurrentAnimatorStateInfo(0).normalizedTime == 0))
+        {
+            anim.SetBool("firstHit", false);
+            anim.SetBool("secondHit", false);
+            anim.SetBool("finalHit", false);
+
         }
         //*/
 
@@ -206,8 +220,8 @@ public class WarpController : MonoBehaviour
                 default:
                     break;
             }
-         
- 
+
+
         }*/
 
 
@@ -265,8 +279,10 @@ public class WarpController : MonoBehaviour
 
     private void UserInterface()
     {
-
-        aim.transform.position = Camera.main.WorldToScreenPoint(target.position + (Vector3)uiOffset);
+        if (target != null)
+        {
+            aim.transform.position = Camera.main.WorldToScreenPoint(target.position + (Vector3)uiOffset);
+        }
 
         if (!input.canMove)
             return;
@@ -304,8 +320,10 @@ public class WarpController : MonoBehaviour
         ShowBody(false);
         anim.speed = 0;
 
-        transform.DOMove(target.position, warpDuration).SetEase(Ease.InExpo).OnComplete(()=>FinishWarp());
-
+        if (target != null)
+        {
+            transform.DOMove(target.position, warpDuration).SetEase(Ease.InExpo).OnComplete(() => FinishWarp());
+        }
         sword.parent = null;
         sword.DOMove(target.position, warpDuration/1.2f);
         sword.DOLookAt(target.position, .2f, AxisConstraint.None);

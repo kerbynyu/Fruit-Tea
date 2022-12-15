@@ -21,6 +21,7 @@ public class EnemyHealth : MonoBehaviour
         if(enemyHealth <= 0)
         {
             GameObject tea = Instantiate(teaDrop, gameObject.transform.position, teaDrop.gameObject.transform.rotation);
+            controller.screenTargets.Remove(gameObject.transform);
             Destroy(gameObject);
         }
     }
