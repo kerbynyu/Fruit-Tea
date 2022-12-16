@@ -30,6 +30,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public Material matPlayer;
 
     Vector3 moveDire;
+    public PlayerManager playerManager;
 
     private void Start()
     {
@@ -92,20 +93,22 @@ public class ThirdPersonMovement : MonoBehaviour
         }
         if (Input.GetButton("Jump"))
         {
-            if (!_isGrounded)
+            if (!_isGrounded && playerManager.fruitForm == 3)
             {
+                getMelon = true;
+                highJump = true;
                 Debug.Log("jumpControl!" + (_jumpForceAdd * -_jumpForceAdd * _gravityValue));
                 _playerVelocity.y += Mathf.Sqrt(_jumpForceAdd * -_jumpForceAdd * _gravityValue) * Time.deltaTime;
             }
         }
 
-        _playerVelocity.y += _gravityValue * Time.deltaTime;
+        _playerVelocity.y += 1.1f*_gravityValue * Time.deltaTime;
         controller.Move(_playerVelocity * Time.deltaTime);
 
         //High jump test code for blockout level
         if (getMelon)
         {
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (highJump)
                     highJump = false;
@@ -114,10 +117,10 @@ public class ThirdPersonMovement : MonoBehaviour
             }
         }
 
-        // if (highJump)
-        //     matPlayer.SetColor("_BaseColor", Color.red);
-        // else
-        //     matPlayer.SetColor("_BaseColor", Color.white);
+         if (highJump)
+             matPlayer.SetColor("_BaseColor", Color.red);
+         else
+             matPlayer.SetColor("_BaseColor", Color.white);
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class melonInfusion : infusionAbstract
 {
     [Header("Player Info")]
-    [SerializeField]
+    //[SerializeField]
     public GameObject _player;
     public Vector3 _playerPos;
     private Vector3 _prevHeight;
@@ -65,7 +65,7 @@ public class melonInfusion : infusionAbstract
         normalize = true;
         _playerPos = _player.transform.position;
         //StartCoroutine(LerpUp());
-        _playerPos.y += _upPos.transform.position.y + 10f;
+        _playerPos.y += _upPos.transform.position.y + 20f;
         //_player.GetComponent<ThirdPersonMovement>().enabled = false;
         //StartCoroutine(Timed2());
     }

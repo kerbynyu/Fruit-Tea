@@ -90,7 +90,10 @@ public class MovementInput : MonoBehaviour {
 
 		if (blockRotationPlayer == false) {
 			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (desiredMoveDirection), desiredRotationSpeed);
-            controller.Move(desiredMoveDirection * Time.deltaTime * velocity);
+			if (controller.gameObject.activeInHierarchy == true)
+			{
+				//controller.Move(desiredMoveDirection * Time.deltaTime * velocity);
+			}
 		}
 	}
 

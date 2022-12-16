@@ -28,7 +28,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Sword" &&( controller.anim.GetBool("firstHit") || controller.anim.GetBool("secondHit") || controller.anim.GetBool("thirdHit")))
+        if(collision.gameObject.tag == "Sword" &&( controller.anim.GetBool("firstHit") || controller.anim.GetBool("secondHit") || controller.anim.GetBool("finalHit")))
         {
             enemyHealth -= 5;
         }
