@@ -28,7 +28,7 @@ public class ShootingSystem : MonoBehaviour
     void Update()
     {
         Vector3 angle = parentController.localEulerAngles;
-        watermelonInfusion = player.GetComponent<ThirdPersonMovement>().highJump;
+        watermelonInfusion = player.GetComponent<ThirdPersonMovement>().getMelon;
 
         //Debug.Log(watermelonInfusion);
         if (watermelonInfusion == true){

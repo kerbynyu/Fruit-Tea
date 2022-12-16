@@ -102,8 +102,15 @@ public class ThirdPersonMovement : MonoBehaviour
             }
         }
 
-        _playerVelocity.y += 1.1f*_gravityValue * Time.deltaTime;
-        controller.Move(_playerVelocity * Time.deltaTime);
+        if (playerManager.fruitForm == 2 || playerManager.fruitForm == 1)
+        {
+            highJump = false;
+            getMelon = false;
+        }
+
+            _playerVelocity.y += 1.1f * _gravityValue * Time.deltaTime;
+            controller.Move(_playerVelocity * Time.deltaTime);
+        
 
         //High jump test code for blockout level
         if (getMelon)
